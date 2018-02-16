@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Trivia</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+
+  <div id="auth">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <img src="assets/img/auth.gif" class="img-fluid mar" alt="">
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <input type="text" class="mar rounded" placeholder="Email" id="email">
+          <input type="password" class="mar rounded" placeholder="Password" id="pw">
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <button class="btn btn-success mar rounded" id="login-btn">Log in</button>
+        </div>
+        <div class="col-8">
+          <button class="btn btn-primary mar rounded" id="signup-btn">Sign up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="home">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <span id="username">nombre</span>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              
+              <li class="nav-item">
+                  <div class="form-check">
+                      <input id="type-mult" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Multiple selection
+                      </label>
+                    </div>
+              </li>
+              <li class="nav-item">
+                  <div class="form-check">
+                      <input id="type-boolean" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        True/False
+                      </label>
+                    </div>
+              </li>
+
+            </ul>
+          </div>
+        </nav>
+    <div class="container">
+      
+      <div class="row justify-content-center">
+        <div class="col-5">
+          <div id="profile-pic"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10 justify-context-center">
+
+        </div>
+      </div>
+      <section id="play">
+        <div class="row">
+          <div class="col-12 text-uppercase">
+            <h3 class="text-center">jugar</h3>
+          </div>
+        </div>
+        <div class="row text-uppercase">
+          <div class="col-4">
+            <button class="btn btn-warning type-btn text-capitalize">Easy</button>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-primary type-btn text-capitalize">Medium</button>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-danger type-btn text-capitalize">Hard</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div id="game">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <button data-id="" class="btn btn-primary" id="all-categories">All categories</button>
+          <div id="categories"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCWudmW3Ntg_RoBdvHVWoGZvR_uzUYObd0",
+      authDomain: "trivia-c5eb8.firebaseapp.com",
+      databaseURL: "https://trivia-c5eb8.firebaseio.com",
+      projectId: "trivia-c5eb8",
+      storageBucket: "",
+      messagingSenderId: "861390061549"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="assets/js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+#auth {
+  height: 100vh;
+  width: 100%;
+  background-color: white;
+  padding: 3em 0;
+  font-size: 1.4em;
+  position: absolute;
+  z-index: 3;
+}
+
+#auth input {
+  width: 100%;
+  border: 1px solid grey;
+  padding: 0.3em;
+}
+
+#auth button {
+  width: 100%;
+  font-size: 1.2em;
+  color: white;
+}
+
+#profile-pic {
+  width: 100%;
+  height: 35vw;
+  background-image: url(../img/profile.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+#play button {
+  width: 100%;
+}
+
+.mar {
+  margin: 0.3em 0;
+}
+
+#game {
+  display: none;
+}
