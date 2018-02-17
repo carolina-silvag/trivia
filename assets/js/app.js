@@ -66,7 +66,7 @@ function start(type, difficulty) {
         $('#categories').append(
           // se apendiza cada una de las categorías bajo el botón all-categories que entrega resultados aleatorios
           // también se le agrega un atributo data del id específico de cada categoría para llamarlo como parámetro con la api
-          `<button data-id="${category.id}" class="btn btn-default options">${
+          `<button data-id="${category.id}" class="btn btn-default options question-trigger">${
             category.name
           }</button>`
         );
@@ -74,7 +74,7 @@ function start(type, difficulty) {
     })
     .then(() => {
       // cuando se hace click en el botón de una categoría, su id se entrega como parámetro en el llamado de la api
-      $('#game button').click(event => {
+      $('#game .question-trigger').click(event => {
         let categoryID = '&category=' + event.target.getAttribute('data-id');
 
         const gameData = fetch(
@@ -84,14 +84,35 @@ function start(type, difficulty) {
           .then(response => response.json())
           .then(data => {
             $('#game').empty(); // se vacía el contenedor para rellenarlo con las preguntas del juego
-            $('#game').append('<ul><ul></ul></ul>'); // se agrega una lista para introducir la data de preguntas/respuestas
-            console.log(data.results);
-            $.each(data.results, (i, question) => {
-              $('#game ul:first-child').append(
-                `<li><h2>${question.question}</h2></li>`
-              );
-            });
+            $('#game').append('<div class="container"><div class="row"><div class="col-12"><ul></ul></div></div></div>')
+            // se apendiza un ul para agregar los elementos desde el data
+            $(this).click(questions(data.results))
+            // paso a la función questions los resultados del fetch (objetos con preguntas y sus respuestas respectivas)
           });
       });
     });
+}
+
+const questions = function(data) {
+  let counter = 0;
+
+  getQuestions(counter, data)
+
+  $('#game ul').html(`<li>
+                      <h2>${data[counter++].question}</h2>
+                      </li>
+                      <li>
+                      <button class="btn btn-default">next</button></li>`)
+  
+}
+
+function getQuestions(pos, data) {
+  let arr = [];
+  data[pos].incorrect_answers.forEach((wrong) => {
+    arr.push(`<li><button class="wrong-answer">${wrong}</button></li>`);
+  });
+  arr.push(`</li><button class="right-answer btn btn-default">${data[pos].correct_answer}</button></li>`);
+  $.each(arr, (x, y) => {
+    $('#game ul').append(x)
+  })
 }
