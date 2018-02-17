@@ -120,10 +120,12 @@ function getQuestion(data, counter) {
 
 function rightAnswer() {
   $('#game .result').html('<h2>Right!</h2><button class="btn btn-success get_question">Next question</button>');
+  $('#game ul button').attr('disabled', true);
 }
 
 function wrongAnswer() {
   $('#game .result').html('<h2>Wrong!</h2><button class="btn btn-danger get_question">Next question</button>');
+  $('#game ul button').attr('disabled', true);
 }
 
 // orden aleatorio de las respuestas en cada pregunta
