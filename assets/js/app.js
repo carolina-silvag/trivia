@@ -114,8 +114,8 @@ function getQuestion(data, counter) {
 
   $('#game').append('<div class="result"></div>');
   // eventos para cuando el usuario aprete las respuestas incorrectas o la correcta
-  $('.q_w').on(wrongAnswer);
-  $('.q_r').on(rightAnswer);
+  $('.q_w').on('click', wrongAnswer);
+  $('.q_r').on('click', rightAnswer);
 }
 
 function rightAnswer() {
