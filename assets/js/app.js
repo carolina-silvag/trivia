@@ -66,7 +66,7 @@ function start(type, difficulty) {
         $('#categories').append(
           // se apendiza cada una de las categorías bajo el botón all-categories que entrega resultados aleatorios
           // también se le agrega un atributo data del id específico de cada categoría para llamarlo como parámetro con la api
-          `<button data-id="${category.id}" class="btn btn-default options question-trigger">${
+          `<button data-id="${category.id}" class="btn btn-default get_question">${
             category.name
           }</button>`
         );
@@ -74,7 +74,7 @@ function start(type, difficulty) {
     })
     .then(() => {
       // cuando se hace click en el botón de una categoría, su id se entrega como parámetro en el llamado de la api
-      $('#game .question-trigger').click(event => {
+      $('#game button').click(event => {
         let categoryID = '&category=' + event.target.getAttribute('data-id');
 
         const gameData = fetch(
@@ -83,36 +83,54 @@ function start(type, difficulty) {
         )
           .then(response => response.json())
           .then(data => {
-            $('#game').empty(); // se vacía el contenedor para rellenarlo con las preguntas del juego
-            $('#game').append('<div class="container"><div class="row"><div class="col-12"><ul></ul></div></div></div>')
-            // se apendiza un ul para agregar los elementos desde el data
-            $(this).click(questions(data.results))
-            // paso a la función questions los resultados del fetch (objetos con preguntas y sus respuestas respectivas)
+            let counter = 0;
+            $('#game').on('click', '.get_question', function() {
+              getQuestion(data.results, counter++);
+              // se pasa como argumento los resultados (preguntas+respuestas)
+              // y el counter inicializado en 0 aumentando de uno en uno
+              // esto es para que cada vez que el usuario responda una pregunta automáticamente avance a la siguiente
+            });
           });
       });
     });
 }
 
-const questions = function(data) {
-  let counter = 0;
+function getQuestion(data, counter) {
+  $('#game').empty(); // se vacía el contenedor para rellenarlo con las preguntas del juego
+  $('#game').append(`<h2>${data[counter].question}</h2>`); // se apendiza la pregunta
+  let arrQ = []; // nuevo arreglo para meter las respuestas
+  data[counter].incorrect_answers.forEach((wrong) => {
+    arrQ.push(`<li><button class=" btn btn-default q_w">${wrong}</button></li>`);
+  });
+  // las respuestas incorrectas llevan la clase q_w
+  arrQ.push(`<li><button class="btn btn-default q_r">${data[counter].correct_answer}</button></li>`);
+  // la respuesta correcta lleva la clase q_r
+  $('#game').append('<ul></ul>'); // se apendiza ul para meter las respuestas
+  arrQ.forEach((answer) => {
+    randomize($('#game ul').append(answer));
+    // se entregan las respuestas apendizadas a la función randomize 
+    // para que las ponga en orden aleatorio
+  });
 
-  getQuestions(counter, data)
-
-  $('#game ul').html(`<li>
-                      <h2>${data[counter++].question}</h2>
-                      </li>
-                      <li>
-                      <button class="btn btn-default">next</button></li>`)
-  
+  $('#game').append('<div class="result"></div>');
+  // eventos para cuando el usuario aprete las respuestas incorrectas o la correcta
+  $('.q_w').one('click', wrongAnswer);
+  $('.q_r').one('click', rightAnswer);
 }
 
-function getQuestions(pos, data) {
-  let arr = [];
-  data[pos].incorrect_answers.forEach((wrong) => {
-    arr.push(`<li><button class="wrong-answer">${wrong}</button></li>`);
-  });
-  arr.push(`</li><button class="right-answer btn btn-default">${data[pos].correct_answer}</button></li>`);
-  $.each(arr, (x, y) => {
-    $('#game ul').append(x)
-  })
+function rightAnswer() {
+  $('#game .result').html('<h2>Right!</h2><button class="btn btn-success get_question">Next question</button>');
+}
+
+function wrongAnswer() {
+  $('#game .result').html('<h2>Wrong!</h2><button class="btn btn-danger get_question">Next question</button>');
+}
+
+// orden aleatorio de las respuestas en cada pregunta
+function randomize() {
+  const parent = $('#game ul');
+  const lis = parent.children();
+  while (lis.length) {
+    parent.append(lis.splice(Math.floor(Math.random() * lis.length), 1)[0]);
+  }
 }
