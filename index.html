@@ -18,7 +18,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-8 text-center">
-          <img src="assets/img/auth.gif" class="img-fluid rounded-circle mar" alt="">
+          <img src="assets/img/auth.gif" class="img-fluid" alt="">
         </div>
       </div>
       <div class="row justify-content-center">
@@ -38,49 +38,36 @@
     </div>
   </div>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <span id="username">nombre</span>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          
-          <li class="nav-item">
-          </li>
-          <li class="nav-item">
-          </li>
-
-        </ul>
-      </div>
+    <nav class="navbar navbar-light bg-light justify-content-between">
+      <a class="navbar-brand">username</a>
+      <button id="logout" class="btn btn-outline-danger my-2 my-sm-0">Log out</button>
     </nav>
   </header>
 
   <div id="home">
     <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-5">
+              <div id="difficulty-pic"></div>
+            </div>
+          </div>
       <section id="play">
         <ul class="nav nav-tabs  nav-justified" id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="categories-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="categories" aria-selected="true">Categorias</a>
+            <a class="nav-link active" id="categories-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="categories" aria-selected="true">Categories</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="difficulty-tab" data-toggle="tab" href="#difficulty" role="tab" aria-controls="difficulty" aria-selected="false">Dificultad</a>
+            <a class="nav-link" id="difficulty-tab" data-toggle="tab" href="#difficulty" role="tab" aria-controls="difficulty" aria-selected="false">Difficulty</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="type-tab" data-toggle="tab" href="#type" role="tab" aria-controls="type" aria-selected="false">Tipo</a>
+            <a class="nav-link" id="type-tab" data-toggle="tab" href="#type" role="tab" aria-controls="type" aria-selected="false">Type</a>
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="categories" role="tabpanel" aria-labelledby="categories-tab">
             <div class="container-fluid">
-              <div class="row justify-content-center">
-                <div class="col-5">
-                  <div id="difficulty-pic"></div>
-                </div>
-              </div>
               <div class="col-12 text-uppercase">
-                <h3 class="text-center">Selecciona Categoria</h3>
+                <h3 class="text-center">Select category</h3>
               </div>
               <div class="row">
                 <div class="col-12">
@@ -93,34 +80,25 @@
             </div>
           </div>
           <div class="tab-pane fade" id="difficulty" role="tabpanel" aria-labelledby="difficulty-tab">
-            <div class="row justify-content-center">
-              <div class="col-5">
-                <div id="difficulty-pic"></div>
-              </div>
-            </div>
             <div class="col-12 text-uppercase">
-              <h3 class="text-center">Selecciona Dificultad</h3>
+              <h3 class="text-center">Select difficulty</h3>
             </div>
             <div class="row text-uppercase">
               <div class="col-4">
-                <button class="btn btn-success type-btn text-capitalize btn-difficulty" value="easy"><i class="fa fa-check inactivo"></i>Facil</button>
+                <button class="btn btn-success type-btn text-capitalize btn-difficulty" value="easy"><i class="fa fa-check inactivo"></i>Easy</button>
               </div>
               <div class="col-4">
-                <button class="btn btn-primary type-btn text-capitalize btn-difficulty" value="medium"><i class="fa fa-check inactivo"></i>Medio</button>
+                <button class="btn btn-primary type-btn text-capitalize btn-difficulty" value="medium"><i class="fa fa-check inactivo"></i>Medium</button>
               </div>
               <div class="col-4">
-                <button class="btn btn-danger type-btn text-capitalize btn-difficulty" value="hard"><i class="fa fa-check inactivo"></i>Dificil</button>
+                <button class="btn btn-danger type-btn text-capitalize btn-difficulty" value="hard"><i class="fa fa-check inactivo"></i>Hard</button>
               </div>
             </div>
           </div>
           <div class="tab-pane fade" id="type" role="tabpanel" aria-labelledby="type-tab">
-            <div class="row justify-content-center">
-              <div class="col-5">
-                <div id="difficulty-pic"></div>
-              </div>
-            </div>
+
             <div class="col-12 text-uppercase">
-              <h3 class="text-center">Selecciona Tipo de Preguntas</h3>
+              <h3 class="text-center">Select question type</h3>
             </div>
             <div class="row">
               <div class="col-6 text-center">
@@ -141,8 +119,9 @@
               </div>
             </div>
           </div>
-          <button data-id="" class="btn btn-primary get_question" id="btn-play">JUGAR</button>
+          
         </div>
+        <button data-id="" class="btn btn-success get_question" id="btn-play">Play</button>
       </section>
     </div>
   </div>

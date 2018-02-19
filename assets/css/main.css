@@ -31,6 +31,8 @@
   background-image: url(../img/profile.jpg);
   background-size: cover;
   background-position: center;
+  border-radius: 0.5em;
+  margin: 1em 0;
 }
 
 #play button {
@@ -39,16 +41,15 @@
 
 .mar {
   margin: 0.3em 0;
-  border: 2px solid red; 
 }
 
 .activo {
-  color: #fff:;
+  color: #fff;
   display: inline-block;
 }
 
 .inactivo {
-  color: #fff:;
+  color: #fff;
   display: none;
 }
 
@@ -59,4 +60,84 @@
 .q_w, .q_r, .next {
   width: 100%;
   margin: 5% 0 5% 0; 
+}
+
+.result {
+  text-align: center;
+}
+
+#btn-play {
+  position: fixed;
+  bottom: 0;
+  margin: 0;
+  font-size: 1.5em;
+}
+
+#home {
+  margin-bottom: 4em;
+}
+
+.result h2 {
+  margin-top: 2em;;
+}
+
+.w_result {
+  height: 30vh;
+  width: 100%;
+  background-image: url(../img/wrong_answer.gif);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.r_result {
+  height: 30vh;
+  width: 100%;
+  background-image: url(../img/right_answer.gif);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.result .next {
+  margin: 0;
+  padding: 0.5em;
+  font-size: 2em;
+}
+
+.result .text-success {
+  background: rgb(218, 255, 218);
+  border: 2px dashed green;
+}
+
+.result .text-danger {
+  background: rgb(255, 230, 230);
+  border: 2px dashed red;
+}
+
+.good_result {
+  height: 30vh;
+  width: 100%;
+  background-image: url(../img/good.gif);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.half_result {
+  height: 30vh;
+  width: 100%;
+  background-image: url(../img/half.gif);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.bad_result {
+  height: 30vh;
+  width: 100%;
+  background-image: url(../img/bad.gif);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
