@@ -4,13 +4,13 @@ $(document).ready(() => {
       $('#auth').hide();
       $('header').show();
       $('#home').show();
+      $('#logout').click(logout);
     } else {
       $('#auth').show();
       $('header').hide();
       $('#home').hide();
       $('#login-btn').click(login);
       $('#signup-btn').click(signup);
-      $('#logout').click(logout);
     }
   }); // firebase
 });
@@ -46,6 +46,7 @@ function logout() {
 // por defecto o cuando escoge usuario
 
 function start() {
+  $('.btn-play').hide();
   let type = getType();
   let url = 'https://opentdb.com/api.php?amount=11';
 
@@ -125,10 +126,18 @@ function getCategories() {
     .then(response => response.json())
     .then(data => {
       $.each(data.trivia_categories, function(i, category) {
-        let inCategory = `<div class="col-md-3 col-xs-12">
+        let pos = category.name.indexOf(':');
+        if (category.name.indexOf(':') !== -1) {
+          let inCategory = `<div class="col-6">
+                          <button data-id="${category.id}" value="${category.id}" class="btn btn-default get_question btn-categories">
+                          <i class="fa fa-check inactivo"></i>${category.name.slice(pos + 2, category.name.length)}</button></div>`;
+          $('#categories-select').append(inCategory);
+        } else {
+          let inCategory = `<div class="col-6">
                           <button data-id="${category.id}" value="${category.id}" class="btn btn-default get_question btn-categories">
                           <i class="fa fa-check inactivo"></i>${category.name}</button></div>`;
-        $('#categories-select').append(inCategory);
+          $('#categories-select').append(inCategory);
+        }
       });
 
       $('.btn-categories').click(setCategorie);
@@ -137,8 +146,12 @@ function getCategories() {
 
 // juego listo para comenzar
 function getQuestion(data, counter) {
+  // console.log(data[counter].correct_answer)
+  // descomentar console log para revisar respuestas correctas
   $('#game').empty(); // se vacía el contenedor para rellenarlo con las preguntas del juego
-  $('#game').append(`<h2 class="text-center">${data[counter].question}</h2>`); // se apendiza la pregunta
+  $('#game').append(`<div class="question_title">
+                    <h2 class="text-center">${data[counter].question}</h2>
+                    </div>`); // se apendiza la pregunta
   let arrQ = []; // nuevo arreglo para meter las respuestas
   data[counter].incorrect_answers.forEach((wrong) => {
     arrQ.push(`<div class="col-6 text-center">
@@ -147,7 +160,6 @@ function getQuestion(data, counter) {
               </div></div>`);
   });
   // las respuestas incorrectas llevan la clase q_w
-  console.log(data[counter].correct_answer)
   arrQ.push(`<div class="col-6 text-center">
             <div class="answers">
             <button class="btn btn-default q_r">${data[counter].correct_answer}</button>
