@@ -15,7 +15,7 @@
 <body>
 
   <div id="auth">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-8 text-center">
           <img src="assets/img/auth.gif" class="img-fluid" alt="">
@@ -23,6 +23,7 @@
       </div>
       <div class="row justify-content-center">
         <div class="col-8">
+          <input type="text" class="mar rounded" placeholder="Name" id="name">
           <input type="text" class="mar rounded" placeholder="Email" id="email">
           <input type="password" class="mar rounded" placeholder="Password" id="pw">
         </div>
@@ -39,13 +40,16 @@
   </div>
   <header>
     <nav class="navbar navbar-light bg-light justify-content-between">
-      <a class="navbar-brand">username</a>
+      <a class="navbar-brand" id="userName">
+        <img class="imgUser rounded-circle img-thumbnail img-fluid" src="" alt="">
+        <span id="user"></span>
+      </a>
       <button id="logout" class="btn btn-outline-danger my-2 my-sm-0">Log out</button>
     </nav>
   </header>
 
   <div id="home">
-    <div class="container-fluid">
+    <div class="container">
       <div class="row justify-content-center">
         <div class="col-4">
           <div id="profile-pic"></div>
@@ -128,7 +132,9 @@
           </div>
         </div>
     </div>
-    <button data-id="" class="btn btn-success get_question" id="btn-play">Play</button>
+    <div class="">
+      <button data-id="" class="btn btn-success get_question" id="btn-play">Play</button>  
+    </div>
   </div>
 
   </section>

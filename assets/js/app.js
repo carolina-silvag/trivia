@@ -27,6 +27,8 @@ function login() {
   }
   email = $('#email').val('');
   pw = $('#pw').val('');
+
+  userName();
 }
 
 function signup() {
@@ -38,11 +40,21 @@ function signup() {
   }
   email = $('#email').val('');
   pw = $('#pw').val('');
+
+  userName();
 }
 
 function logout() {
   firebase.auth().signOut();
 }
+
+function userName() {
+  let name = $('#name').val();
+  $('#userName img').attr('src', `https://robohash.org/${name}?set=set4`);
+  $('#user').text(name);
+}
+
+
 // por defecto o cuando escoge usuario
 
 function start() {
@@ -221,6 +233,7 @@ function wrongAnswer() {
                           <h4></h4>
                           <div class="final_result"></div>
                           <h3></h3>
+                          <button id="return" class="btn btn-success get_question"></button>
                           </div></div>`);
     $('#game .answers button').attr('disabled', true);
     results();
@@ -237,13 +250,17 @@ function results() {
   if (rightCount < 5) {
     $('#game .final_result').addClass('bad_result');
     $('#game .result h3').text('You did real bad but don\'t give up, friend!');
+    $('#game .result button').html('back home page');
   } else if (rightCount === 5) {
     $('#game .final_result').addClass('half_result');
     $('#game .result h3').text('You\'re doing alright but we know you can do better, keep playing!');
+    $('#game .result button').html('back home page');
   } else if (rightCount > 5) {
     $('#game .final_result').addClass('good_result');
     $('#game .result h3').text('Congrats!!');
+    $('#game .result button').html('back home page');
   }
+  $('#return').click(returnPage);
 }
 
 // orden aleatorio de las respuestas en cada pregunta
@@ -303,6 +320,13 @@ function setDefaultValues() {
   setClassDifficulty();
   category = '';
   setClassCategories();
+}
+
+// volver a la pagina principal para volver a jugar
+function returnPage() {
+  console.log('volver');
+  $('#home').css('display', 'block');
+  $('#game').css('display', 'none');
 }
 
 // Jugar
